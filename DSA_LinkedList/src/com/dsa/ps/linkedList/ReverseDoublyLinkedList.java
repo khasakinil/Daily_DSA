@@ -17,13 +17,12 @@ public class ReverseDoublyLinkedList {
 
 	public Node insertInDoublyLinkedList(int data) {
 		Node node = new Node(data);
-		if (head == null) {
-			head = node;
-		} else {
+		node.prev = null;
+		node.next = head;
+		if (head != null) {
 			head.prev = node;
-			node.next = head;
-			head = node;
 		}
+		head = node;
 		return head;
 	}
 
@@ -31,7 +30,6 @@ public class ReverseDoublyLinkedList {
 		if (head == null) {
 			System.out.println("Linked List does not exists");
 		} else {
-			System.out.println();
 			Node current = head;
 			while (current != null) {
 				System.out.print(current.data + " ");
@@ -41,9 +39,7 @@ public class ReverseDoublyLinkedList {
 	}
 
 	public static void main(String args[]) {
-
 		ReverseDoublyLinkedList rdll = new ReverseDoublyLinkedList();
-		head = new Node(21);
 		head = rdll.insertInDoublyLinkedList(22);
 		head = rdll.insertInDoublyLinkedList(23);
 		head = rdll.insertInDoublyLinkedList(24);
@@ -52,24 +48,28 @@ public class ReverseDoublyLinkedList {
 		head = rdll.insertInDoublyLinkedList(27);
 		head = rdll.insertInDoublyLinkedList(28);
 		head = rdll.insertInDoublyLinkedList(29);
+		System.out.println("Original Linked List : ");
 		rdll.printDoublyLinkedList(head);
 
 		head = rdll.reverseDoublyLinkedList(head);
+		System.out.println("\nAfter reversing Linked List : ");
 		rdll.printDoublyLinkedList(head);
 	}
 
 	private Node reverseDoublyLinkedList(Node head) {
-		System.out.println();
 		if (head != null) {
 			Node current = head;
 			Node temp = null;
-			while(current!= null) {
-				temp = current.next;
-				current.next = current.prev;
-				current.prev = temp;
+			while (current != null) {
+				temp = current.prev;
+				current.prev = current.next;
+				current.next = temp;
 				current = current.prev;
 			}
-			return temp;
+			if (temp != null) {
+				return temp.prev;
+			}
+			return head;
 		} else {
 			System.out.println("Linked List does not exists..");
 		}
