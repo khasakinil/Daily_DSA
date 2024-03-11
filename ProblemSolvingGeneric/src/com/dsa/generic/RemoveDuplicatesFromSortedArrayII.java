@@ -12,8 +12,9 @@ public class RemoveDuplicatesFromSortedArrayII {
 	public static void main(String args[]) {
 		RemoveDuplicatesFromSortedArrayII remDup = new RemoveDuplicatesFromSortedArrayII();
 		int[] nums = { 0, 0, 1, 1, 1, 1, 2, 3, 3 };
-		// 1,1,1,2,2,3
+		// 1, 1, 1, 2, 2, 3
 		// 0, 0, 1, 1, 1, 1, 2, 3, 3
+		// 1, 2
 		int uniqueNumbers = remDup.removeDuplicatesFromSortedArray(nums);
 		System.out.println("Unique Numbers : " + uniqueNumbers);
 		for (int i = 0; i < uniqueNumbers; i++) {
@@ -23,22 +24,20 @@ public class RemoveDuplicatesFromSortedArrayII {
 
 	private int removeDuplicatesFromSortedArray(int[] nums) {
 		int uniqueCount = 0;
-		int i = 0;
+		int i = 1;
 		int count = 1;
 		while (i < nums.length && uniqueCount < nums.length) {
+			if (nums[uniqueCount] != nums[i]) {
+				nums[++uniqueCount] = nums[i];
+				count = 1;
+				i++;
+				continue;
+			}
 			if (nums[uniqueCount] == nums[i] && count < 2) {
 				nums[++uniqueCount] = nums[i];
 				count++;
 				i++;
 				continue;
-			} else if (nums[uniqueCount] == nums[i] && count >= 2) {
-				i++;
-				continue;
-			}
-
-			if (nums[uniqueCount] != nums[i]) {
-				nums[++uniqueCount] = nums[i];
-				count = 1;
 			}
 			i++;
 		}
