@@ -15,12 +15,12 @@ public class RemoveElement {
 	}
 
 	private static int keepExpectedNumsAndRemoveElement(int[] nums, int val) {
-		int count = 0;
+		int numsCount = 0;
 		for (int i = 0; i < nums.length; i++) {
 			if (nums[i] != val) {
-				nums[count++] = nums[i];
+				nums[numsCount++] = nums[i];
 			}
 		}
-		return count;
+		return numsCount;
 	}
 }
