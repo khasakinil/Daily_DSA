@@ -8,47 +8,19 @@ package com.dsa.generic;
  */
 public class RemoveElement {
 	public static void main(String[] args) {
-		int[] nums = { 3,2,2,3 };
-		int val = 3;
+		int[] nums = { 0, 1, 2, 2, 3, 0, 4, 2 };
+		int val = 2;
 		int expectedNums = keepExpectedNumsAndRemoveElement(nums, val);
 		System.out.println("expectedNums : " + expectedNums);
 	}
 
 	private static int keepExpectedNumsAndRemoveElement(int[] nums, int val) {
-
-		int frontPointer = 0;
-		int backPointer = nums.length - 1;
-
+		int count = 0;
 		for (int i = 0; i < nums.length; i++) {
-			if (i >= backPointer) {
-				frontPointer = i > backPointer ? i - 1 : i;
-				break;
-			}
-			if (nums[i] == val) {
-				backPointer = getBackPointerIndex(backPointer, val, nums);
-				if (backPointer > i) {
-					int temp = nums[i];
-					nums[i] = nums[backPointer];
-					nums[backPointer] = temp;
-				} else {
-					break;
-				}
+			if (nums[i] != val) {
+				nums[count++] = nums[i];
 			}
 		}
-
-		for (int i = 0; i < nums.length; i++) {
-			System.out.println(nums[i]);
-		}
-		return frontPointer;
-	}
-
-	private static int getBackPointerIndex(int backPointer, int val, int[] nums) {
-		while (backPointer >= 0) {
-			if (nums[backPointer] != val) {
-				return backPointer;
-			}
-			backPointer--;
-		}
-		return 0;
+		return count;
 	}
 }
