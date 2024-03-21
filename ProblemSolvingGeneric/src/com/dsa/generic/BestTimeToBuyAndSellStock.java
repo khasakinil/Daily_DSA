@@ -11,18 +11,41 @@ package com.dsa.generic;
  */
 public class BestTimeToBuyAndSellStock {
 	public static void main(String args[]) {
-		int[] prices = { 7, 6, 4, 3, 1 };
+		int[] prices = { 7, 1, 5, 3, 6, 4 };
 		int maxProfit = getMaxProfit(prices);
 		System.out.println("maxProfit  : " + maxProfit);
 	}
 
 	private static int getMaxProfit(int[] prices) {
-		int buyVal = Integer.MAX_VALUE;
-		int sellVal = 0;
-		int maxPriceIndex = 0;
-		int minPriceIndex = 0;
-		for (int i = 0; i < prices.length/2; i++) {
+		if (prices.length == 1) {
+			return 0;
 		}
-		return sellVal-buyVal;
+		
+		int maxProfit = 0;
+		
+		for(int i=0; i<prices.length; i++) {
+			for(int j = i+1; j<prices.length; j++) {
+				if(prices[j] - prices[i]>maxProfit) {
+					maxProfit = prices[j] - prices[i];
+				}
+			}
+		}
+
+//		int buyVal = Integer.MAX_VALUE;
+//		int sellVal = Integer.MIN_VALUE;
+//		int start = 0, end = prices.length - 1;
+//
+//		while (start <= end) {
+//			if (prices[start] < buyVal) {
+//				buyVal = prices[start];
+//			}
+//			if (prices[end] > sellVal) {
+//				sellVal = prices[end];
+//			}
+//			start++;
+//			end--;
+//		}
+//		return sellVal - buyVal < 0 ? 0 : sellVal - buyVal;
+		return maxProfit;
 	}
 }
