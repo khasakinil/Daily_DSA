@@ -20,32 +20,15 @@ public class BestTimeToBuyAndSellStock {
 		if (prices.length == 1) {
 			return 0;
 		}
-		
-		int maxProfit = 0;
-		
-		for(int i=0; i<prices.length; i++) {
-			for(int j = i+1; j<prices.length; j++) {
-				if(prices[j] - prices[i]>maxProfit) {
-					maxProfit = prices[j] - prices[i];
-				}
+
+		int buy = prices[0], maxProfit = 0;
+		for (int i = 1; i < prices.length; i++) {
+			if (buy > prices[i]) {
+				buy = prices[i];
+			}else if(prices[i]-buy > maxProfit) {
+				maxProfit = prices[i]-buy;
 			}
 		}
-
-//		int buyVal = Integer.MAX_VALUE;
-//		int sellVal = Integer.MIN_VALUE;
-//		int start = 0, end = prices.length - 1;
-//
-//		while (start <= end) {
-//			if (prices[start] < buyVal) {
-//				buyVal = prices[start];
-//			}
-//			if (prices[end] > sellVal) {
-//				sellVal = prices[end];
-//			}
-//			start++;
-//			end--;
-//		}
-//		return sellVal - buyVal < 0 ? 0 : sellVal - buyVal;
 		return maxProfit;
 	}
 }
