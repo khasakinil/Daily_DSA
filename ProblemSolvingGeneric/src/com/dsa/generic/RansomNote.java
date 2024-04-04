@@ -11,7 +11,7 @@ import java.util.Set;
  * Each letter in magazine can only be used once in ransomNote.
  * 
  * Example 1:
- * Input: ransomNote = "a", magazine = "b"
+ * Input: ransomNote = "aa", magazine = "aab"
  * Output: false
  * 
  * Example 2:
@@ -38,25 +38,21 @@ public class RansomNote {
 
 		Map<Character, Integer> ransomMap = new HashMap<Character, Integer>();
 		Map<Character, Integer> magazineMap = new HashMap<Character, Integer>();
-		Set<Character> ransomSet = new HashSet<Character>();
 
 		for (int i = 0; i < ransomNote.length(); i++) {
 			ransomMap.put(ransomNote.charAt(i), ransomMap.getOrDefault(ransomNote.charAt(i), 0) + 1);
-			if (!ransomSet.contains(ransomNote.charAt(i))) {
-				ransomSet.add(ransomNote.charAt(i));
-			}
 		}
 
 		for (int i = 0; i < magazine.length(); i++) {
 			magazineMap.put(magazine.charAt(i), magazineMap.getOrDefault(magazine.charAt(i), 0) + 1);
 		}
 
-		for (Character ch : ransomSet) {
-			if (!(magazineMap.containsKey(ch) && ransomMap.get(ch) <= magazineMap.get(ch))) {
+		for (Map.Entry entry : ransomMap.entrySet()) {
+			if (!(magazineMap.containsKey(entry.getKey())
+					&& (int) entry.getValue() <= magazineMap.get(entry.getKey()))) {
 				return false;
 			}
 		}
-
 		return true;
 	}
 
