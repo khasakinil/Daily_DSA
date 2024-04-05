@@ -26,13 +26,17 @@ import java.util.Map;
 public class WordPattern {
 	public static void main(String[] args) {
 		String pattern = "abba", s = "dog cat cat dog";
-		List<String> splittedStr = Arrays.asList(s.split(" "));
-		boolean isPatternMatches = isPatternMatchesForString(pattern, splittedStr);
+		boolean isPatternMatches = isPatternMatchesForString(pattern, s);
 		System.out.println("IsPatternMatches : " + isPatternMatches);
 	}
 
-	private static boolean isPatternMatchesForString(String pattern, List<String> splittedStr) {
+	private static boolean isPatternMatchesForString(String pattern, String s) {
+		List<String> splittedStr = Arrays.asList(s.split(" "));
 		Map<Character, String> CharStrMap = new HashMap<Character, String>();
+		if(pattern.length() != splittedStr.size()) {
+			return false;
+		}
+		
 		for (int i = 0; i < pattern.length(); i++) {
 			if (CharStrMap.containsKey(pattern.charAt(i))) {
 				if (!CharStrMap.get(pattern.charAt(i)).equals(splittedStr.get(i))) {
