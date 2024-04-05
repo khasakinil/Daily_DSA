@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class WordPattern {
 	public static void main(String[] args) {
-		String pattern = "abba", s = "dog cat cat dog";
+		String pattern = "aaaa", s = "dog cat cat dog";
 		boolean isPatternMatches = isPatternMatchesForString(pattern, s);
 		System.out.println("IsPatternMatches : " + isPatternMatches);
 	}
@@ -33,10 +33,11 @@ public class WordPattern {
 	private static boolean isPatternMatchesForString(String pattern, String s) {
 		List<String> splittedStr = Arrays.asList(s.split(" "));
 		Map<Character, String> CharStrMap = new HashMap<Character, String>();
-		if(pattern.length() != splittedStr.size()) {
+		Map<String, Character> StrCharMap = new HashMap<String, Character>();
+		if (pattern.length() != splittedStr.size()) {
 			return false;
 		}
-		
+
 		for (int i = 0; i < pattern.length(); i++) {
 			if (CharStrMap.containsKey(pattern.charAt(i))) {
 				if (!CharStrMap.get(pattern.charAt(i)).equals(splittedStr.get(i))) {
@@ -44,6 +45,16 @@ public class WordPattern {
 				}
 			} else {
 				CharStrMap.put(pattern.charAt(i), splittedStr.get(i));
+			}
+		}
+		
+		for(int i=0; i<splittedStr.size(); i++) {
+			if(StrCharMap.containsKey(splittedStr.get(i))) {
+				if(StrCharMap.get(splittedStr.get(i))!=pattern.charAt(i)) {
+					return false;
+				}
+			}else {
+				StrCharMap.put(splittedStr.get(i), pattern.charAt(i));
 			}
 		}
 		return true;
