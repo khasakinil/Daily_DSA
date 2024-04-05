@@ -28,7 +28,7 @@ public class WordPattern {
 		String pattern = "abba", s = "dog cat cat dog";
 		List<String> splittedStr = Arrays.asList(s.split(" "));
 		boolean isPatternMatches = isPatternMatchesForString(pattern, splittedStr);
-		System.out.println("isPatternMatches : " + isPatternMatches);
+		System.out.println("IsPatternMatches : " + isPatternMatches);
 	}
 
 	private static boolean isPatternMatchesForString(String pattern, List<String> splittedStr) {
