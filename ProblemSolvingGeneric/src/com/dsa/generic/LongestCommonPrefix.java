@@ -9,12 +9,23 @@ public class LongestCommonPrefix {
 
 	public static String longestCommonPrefix(String[] strs) {
 		String commonPrefix = "";
-		for(int i=0; i<strs.length; i++) {
-			for(int j=i+1; j<strs[i].length(); j++) {
-				
+		int j = 0;
+		while (true) {
+			boolean needToBreak = false;
+			for (int i = 1; i < strs.length; i++) {
+				if (j >= strs[i].length() || strs[i - 1].charAt(j) != strs[i].charAt(j)) {
+					needToBreak = true;
+					break;
+				}
 			}
+
+			if (needToBreak) {
+				break;
+			} else {
+				commonPrefix += strs[0].charAt(j);
+			}
+			j++;
 		}
-		
 		return commonPrefix;
 	}
 }
