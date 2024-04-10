@@ -23,8 +23,8 @@ import java.util.Map;
 public class TwoSum {
 
 	public static void main(String[] args) {
-		int[] numbers = { 0, 0, 5, 7 };
-		int target = 0;
+		int[] numbers = { 3, 3 };
+		int target = 6;
 		int[] twoSumIndex = getTwoSumIndex(numbers, target);
 		System.out.println("twoSumIndex : ");
 		for (int i = 0; i < twoSumIndex.length; i++) {
@@ -39,7 +39,7 @@ public class TwoSum {
 		}
 
 		for (Map.Entry entry : numMap.entrySet()) {
-			if (numMap.containsKey(entry.getKey()) && numMap.containsKey(target - (int) entry.getKey())) {
+			if (numMap.containsKey(target - (int) entry.getKey())) {
 				int firstElement = (int) entry.getValue();
 				if ((int) entry.getValue() == numMap.get(target - (int) entry.getKey())) {
 					for (int i = 0; i < numbers.length; i++) {
