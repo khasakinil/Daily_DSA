@@ -1,4 +1,8 @@
 package com.dsa.generic;
+
+import java.util.HashSet;
+import java.util.Set;
+
 /*
  * A happy number is a number defined by the following process:
  * Starting with any positive integer, replace the number by the sum of the squares of its digits.
@@ -22,15 +26,16 @@ package com.dsa.generic;
 public class HappyNumber {
 
 	public static void main(String[] args) {
-		int n = 19;
+		int n = 2;
 		boolean isHappyNumber = isHappy(n);
 		System.out.println("isHappyNumber : " + isHappyNumber);
 	}
 
 	public static boolean isHappy(int n) {
-		while (n != 1 || (n >= 2 && n <= 9)) {
+		Set<Integer> happySet = new HashSet<Integer>();
+		while (n != 1 && !happySet.contains(n)) {
 			int currentSqr = 0;
-
+			happySet.add(n);
 			while (n > 0) {
 				int currentNum = n % 10;
 				currentSqr += (currentNum * currentNum);
