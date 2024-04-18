@@ -7,7 +7,7 @@ package com.dsa.generic;
 
 public class CountBinarySubstrings {
 	public static void main(String[] args) {
-		String s = "00110011";
+		String s = "0011100011";
 		int binarySubstringCoung = getBinarySubstringsCount(s);
 		System.out.println("binarySubstringCoung : " + binarySubstringCoung);
 	}
