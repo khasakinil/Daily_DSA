@@ -1,5 +1,7 @@
 package com.dsa.generic;
 
+import java.util.Arrays;
+
 /*
  * Given an array of integers nums, calculate the pivot index of this array.
  * The pivot index is the index where the sum of all the numbers strictly to 
@@ -35,41 +37,26 @@ package com.dsa.generic;
 public class PivotIndex {
 
 	public static void main(String[] args) {
-		int[] nums = {2,1,-1};
-		int pivotIndex = getPivotIndex(nums);
+		int[] nums = { -1, -1, -1, -1, -1, -1 };
+		int rightSum = getSum(nums);
+		int pivotIndex = getPivotIndex(nums, rightSum);
 		System.out.println("pivotIndex : " + pivotIndex);
 	}
 
-	private static int getPivotIndex(int[] nums) {
-		if (nums.length == 0) {
-			return 0;
-		}
+	private static int getSum(int[] nums) {
+		return Arrays.stream(nums).sum();
+	}
 
+	private static int getPivotIndex(int[] nums, int rightSum) {
 		int leftSum = 0;
-		int rightSum = 0;
-		int leftPointer = 0;
-		int rightPointer = nums.length - 1;
-
-		while (leftPointer <= rightPointer) {
-			if (leftSum < rightSum) {
-				leftSum += nums[leftPointer++];
-			} else {
-				rightSum += nums[rightPointer--];
+		for (int i = 0; i < nums.length; i++) {
+			rightSum -= nums[i];
+			if (rightSum == leftSum) {
+				return i;
 			}
-			
-			if(leftSum == rightSum && leftPointer == rightPointer) {
-				break;
-			}
+			leftSum += nums[i];
 		}
-
-		if (leftSum == rightSum && leftPointer == rightPointer) {
-			return leftPointer;
-		} else if (leftSum == rightSum&& leftPointer != rightPointer) {
-			return -1;
-		} else {
-			return 0;
-		}
-
+		return -1;
 	}
 
 }
