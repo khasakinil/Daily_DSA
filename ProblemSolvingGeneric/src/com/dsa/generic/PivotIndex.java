@@ -35,7 +35,7 @@ package com.dsa.generic;
 public class PivotIndex {
 
 	public static void main(String[] args) {
-		int[] nums = { 1,2,3 };
+		int[] nums = {2,1,-1};
 		int pivotIndex = getPivotIndex(nums);
 		System.out.println("pivotIndex : " + pivotIndex);
 	}
@@ -50,17 +50,21 @@ public class PivotIndex {
 		int leftPointer = 0;
 		int rightPointer = nums.length - 1;
 
-		while (leftPointer < rightPointer) {
+		while (leftPointer <= rightPointer) {
 			if (leftSum < rightSum) {
 				leftSum += nums[leftPointer++];
 			} else {
 				rightSum += nums[rightPointer--];
 			}
+			
+			if(leftSum == rightSum && leftPointer == rightPointer) {
+				break;
+			}
 		}
 
 		if (leftSum == rightSum && leftPointer == rightPointer) {
 			return leftPointer;
-		} else if (leftSum == rightSum) {
+		} else if (leftSum == rightSum&& leftPointer != rightPointer) {
 			return -1;
 		} else {
 			return 0;
