@@ -1,5 +1,9 @@
 package com.dsa.generic;
 
+/*
+ * find second minimum element in array
+ * 
+ */
 public class SecondMinimumElementInArray {
 
 	public static void main(String[] args) {
