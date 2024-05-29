@@ -42,9 +42,8 @@ public class SmallestSubarrayWithSumGreaterThanTarget {
 
 	private static List<Integer> getSmallestSubarrayWithSumGreaterThanTarget(int[] arr, int target) {
 		List<Integer> smallestList = new ArrayList<>();
+		int len = Integer.MAX_VALUE;
 
-		
-		
 		for (int i = 0; i < arr.length; i++) {
 			int curr = i;
 			int totalSum = 0;
@@ -53,6 +52,9 @@ public class SmallestSubarrayWithSumGreaterThanTarget {
 				totalSum += arr[curr++];
 				if (totalSum >= target) {
 					isSumGreater = true;
+				}
+				if (curr - i > len) {
+					break;
 				}
 			}
 
@@ -69,6 +71,7 @@ public class SmallestSubarrayWithSumGreaterThanTarget {
 						}
 					}
 				}
+				len = curr - i;
 			}
 		}
 		return smallestList;
