@@ -17,10 +17,18 @@ public class BinaryTreeByLinkedListMain {
 		btbll.preOrderTraversal();
 		btbll.InOrderTraversal();
 		btbll.postOrderTraversal();
-		
+
 		btbll.searchNodeInBinaryTree(44);
 		btbll.searchNodeInBinaryTree(50);
+
+		btbll.deleteNodeFromBinaryTree(64);
+		btbll.levelOrderTraversal();
+
+		btbll.deleteNodeFromBinaryTree(24);
+		btbll.levelOrderTraversal();
 		
-		
+		btbll.deleteBinaryTree();
+		btbll.levelOrderTraversal();
+		btbll.searchNodeInBinaryTree(44);
 	}
 }

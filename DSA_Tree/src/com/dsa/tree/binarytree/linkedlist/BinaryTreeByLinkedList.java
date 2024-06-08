@@ -43,6 +43,7 @@ public class BinaryTreeByLinkedList {
 
 	private void levelOrderTraversal(BinaryNode root) {
 		if (root == null) {
+			System.out.println("\nBinary does not exists");
 			return;
 		}
 
@@ -67,6 +68,7 @@ public class BinaryTreeByLinkedList {
 
 	private void preOrderTraversal(BinaryNode root) {
 		if (root == null) {
+			System.out.println("\nBinary does not exists");
 			return;
 		}
 
@@ -82,6 +84,7 @@ public class BinaryTreeByLinkedList {
 
 	private void inOrderTraversal(BinaryNode root) {
 		if (root == null) {
+			System.out.println("\nBinary does not exists");
 			return;
 		}
 
@@ -97,6 +100,7 @@ public class BinaryTreeByLinkedList {
 
 	private void postOrderTraversal(BinaryNode root) {
 		if (root == null) {
+			System.out.println("\nBinary does not exists");
 			return;
 		}
 
@@ -107,6 +111,7 @@ public class BinaryTreeByLinkedList {
 
 	public void searchNodeInBinaryTree(int nodeValue) {
 		if (root == null) {
+			System.out.println("\nBinary does not exists");
 			return;
 		}
 
@@ -126,5 +131,72 @@ public class BinaryTreeByLinkedList {
 			}
 		}
 		System.out.println("\nNode with value : " + nodeValue + " not found in Binary Tree");
+	}
+
+	public void deleteNodeFromBinaryTree(int nodeValue) {
+		if (root == null) {
+			System.out.println("\nBinary does not exists");
+			return;
+		}
+
+		Queue<BinaryNode> queue = new LinkedList<>();
+		queue.add(root);
+
+		while (!queue.isEmpty()) {
+			BinaryNode currentNode = queue.remove();
+			if (currentNode.getValue() == nodeValue) {
+				currentNode.setValue(getDeepestNode().getValue());
+				deleteDeepestNode();
+				return;
+			} else {
+				if (currentNode.getLeft() != null) {
+					queue.add(currentNode.getLeft());
+				}
+				if (currentNode.getRight() != null) {
+					queue.add(currentNode.getRight());
+				}
+			}
+		}
+	}
+
+	private void deleteDeepestNode() {
+		Queue<BinaryNode> queue = new LinkedList<>();
+		queue.add(root);
+		BinaryNode prevNode = null, currentNode = null;
+		while (!queue.isEmpty()) {
+			prevNode = currentNode;
+			currentNode = queue.remove();
+			if (currentNode.getLeft() == null) {
+				prevNode.setRight(null);
+				return;
+			}
+			if (currentNode.getRight() == null) {
+				currentNode.setLeft(null);
+				return;
+			}
+			queue.add(currentNode.getLeft());
+			queue.add(currentNode.getRight());
+		}
+
+	}
+
+	private BinaryNode getDeepestNode() {
+		Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+		queue.add(root);
+		BinaryNode currentNode = null;
+		while (!queue.isEmpty()) {
+			currentNode = queue.remove();
+			if (currentNode.getLeft() != null) {
+				queue.add(currentNode.getLeft());
+			}
+			if (currentNode.getRight() != null) {
+				queue.add(currentNode.getRight());
+			}
+		}
+		return currentNode;
+	}
+
+	public void deleteBinaryTree() {
+		root = null;
 	}
 }
