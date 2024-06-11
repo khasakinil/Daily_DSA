@@ -29,5 +29,8 @@ public class BinarySearchTreeMain {
 		System.out.println("\n\nPrinting tree Graphically");
 		bst.printTreeGraphically();
 
+		System.out.println("\n\nSearch for value");
+		bst.searchForValue(105);
+		bst.searchForValue(107);
 	}
 }

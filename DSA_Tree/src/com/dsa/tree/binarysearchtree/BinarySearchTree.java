@@ -99,8 +99,60 @@ public class BinarySearchTree {
 		if (root == null) {
 			System.out.println("Tree does not exists");
 		}
-		
-		
+
+		Queue<BinaryNode> queue = new LinkedList<BinaryNode>();
+		Queue<Integer> level = new LinkedList<Integer>();
+		int currentLevel = 1;
+		boolean previousLevelWasAllNull = false;
+
+		queue.add(root);
+		level.add(1);
+
+		while (!queue.isEmpty()) {
+			if (currentLevel == level.peek()) {
+				if (queue.peek() == null) {
+					queue.add(null);
+					level.add(currentLevel + 1);
+				} else {
+					queue.add(queue.peek().getLeft());
+					level.add(currentLevel + 1);
+					queue.add(queue.peek().getRight());
+					level.add(currentLevel + 1);
+					previousLevelWasAllNull = false;
+				}
+				BinaryNode currentNode = queue.remove();
+				System.out.print(" ");
+				System.out.print(currentNode != null ? currentNode.getValue() : currentNode + " ");
+				level.remove();
+			} else {
+				System.out.println("\n");
+				currentLevel++;
+				if (previousLevelWasAllNull == true) {
+					break;
+				}
+				previousLevelWasAllNull = true;
+			}
+		}
+	}
+
+	public void searchForValue(int nodeValue) {
+		searchForValue(root, nodeValue);
+	}
+
+	private BinaryNode searchForValue(BinaryNode root, int nodeValue) {
+		if (root == null) {
+			System.out.println("\n\nNode with value " + nodeValue + " not found in BST");
+			return null;
+		}
+
+		else if (nodeValue == root.getValue()) {
+			System.out.println("\n\nNode with value " + nodeValue + " found in BST");
+			return root;
+		} else if (nodeValue < root.getValue()) {
+			return searchForValue(root.getLeft(), nodeValue);
+		} else {
+			return searchForValue(root.getRight(), nodeValue);
+		}
 	}
 
 }
