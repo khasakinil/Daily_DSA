@@ -32,5 +32,9 @@ public class BinarySearchTreeMain {
 		System.out.println("\n\nSearch for value");
 		bst.searchForValue(105);
 		bst.searchForValue(107);
+
+		System.out.println("\n\nDelete Node from BST");
+		bst.deleteNodeFromBST(80);
+		bst.printTreeGraphically();
 	}
 }
