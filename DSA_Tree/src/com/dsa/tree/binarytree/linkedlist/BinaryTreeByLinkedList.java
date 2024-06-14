@@ -2,6 +2,7 @@ package com.dsa.tree.binarytree.linkedlist;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinaryTreeByLinkedList {
 	private BinaryNode root;
@@ -198,5 +199,29 @@ public class BinaryTreeByLinkedList {
 
 	public void deleteBinaryTree() {
 		root = null;
+	}
+
+	public void InOrderTraversalWithouRecursion() {
+		System.out.println("\nIn Order Traversal Without Recursion-");
+		InOrderTraversalWithouRecursion(root);
+	}
+
+	private void InOrderTraversalWithouRecursion(BinaryNode root) {
+		if (root == null) {
+			return;
+		}
+		Stack<BinaryNode> stack = new Stack<>();
+		BinaryNode current = root;
+
+		while (current != null || stack.size() > 0) {
+			while (current != null) {
+				stack.push(current);
+				current = current.getLeft();
+			}
+
+			current = stack.pop();
+			System.out.print(current.getValue() + " ");
+			current = current.getRight();
+		}
 	}
 }

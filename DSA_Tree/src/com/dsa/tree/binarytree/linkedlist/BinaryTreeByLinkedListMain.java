@@ -26,9 +26,12 @@ public class BinaryTreeByLinkedListMain {
 
 		btbll.deleteNodeFromBinaryTree(24);
 		btbll.levelOrderTraversal();
-		
+
+		btbll.searchNodeInBinaryTree(44);
+
+		btbll.InOrderTraversalWithouRecursion();
+
 		btbll.deleteBinaryTree();
 		btbll.levelOrderTraversal();
-		btbll.searchNodeInBinaryTree(44);
 	}
 }
