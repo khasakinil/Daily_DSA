@@ -1,5 +1,8 @@
 package com.dsa.generic;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
  * There are n friends that are playing a game. The friends are sitting in a circle and are numbered from 1 to n in clockwise order. 
  * More formally, moving clockwise from the ith friend brings you to the (i+1)th friend for 1 <= i < n, and moving clockwise from the nth friend brings you to the 1st friend.
@@ -21,7 +24,10 @@ public class WinnerOfCircularGame {
 	}
 
 	public static int findTheWinner(int n, int k) {
-
-		return 0;
+		if (n == 1) {
+			return 1;
+		}
+		int winner = (findTheWinner(n - 1, k) + k) % n;
+		return winner == 0 ? n : winner;
 	}
 }
