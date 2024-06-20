@@ -17,7 +17,15 @@ package com.dsa.generic;
  * 
  * Solving Approach:
  * 
- * 
+ * 1. Iterate all jumps
+ * 2. In Each iteration update the reachable index
+ * 3. if (reachable < i) {
+ * 		return false;
+ * 	  }
+ * 4. in every iteration update the reachable with
+ * 		if (reachable < i + nums[i]) {
+ * 			reachable = i + nums[i];
+ * 		}
  * 
  */
 public class JumpGame {
@@ -29,24 +37,15 @@ public class JumpGame {
 
 	public static boolean canJump(int[] nums) {
 
-		if (nums.length == 1 && nums[0] == 0) {
-			return true;
-		}
-
-		int jumpIndex = 0;
-		boolean isNotStuck = false;
-		while (jumpIndex < nums.length && !isNotStuck) {
-			jumpIndex += nums[jumpIndex];
-			if (jumpIndex >= nums.length - 1) {
-				return true;
+		int reachable = 0;
+		int numsLength = nums.length;
+		for (int i = 0; i < numsLength; i++) {
+			if (reachable < i) {
+				return false;
 			}
-			if (nums[jumpIndex] == 0) {
-				isNotStuck = true;
+			if (reachable < i + nums[i]) {
+				reachable = i + nums[i];
 			}
-		}
-
-		if (isNotStuck) {
-			return false;
 		}
 
 		return true;
