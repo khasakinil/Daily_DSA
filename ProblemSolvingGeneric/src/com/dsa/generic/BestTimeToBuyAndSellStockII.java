@@ -23,6 +23,13 @@ package com.dsa.generic;
  * Input: prices = [7,6,4,3,1]
  * Output: 0
  * Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
+ * 
+ * Solving Approach:
+ * 1. iterate prices from left to right
+ * 2. If privious price is less than current then 
+ * 	-> if (prices[i] < prices[i + 1]) {
+ * 			maxProfit += (prices[i + 1] - prices[i]);
+ * 		}
  */
 
 public class BestTimeToBuyAndSellStockII {
@@ -37,7 +44,7 @@ public class BestTimeToBuyAndSellStockII {
 
 		for (int i = 0; i < prices.length - 1; i++) {
 			if (prices[i] < prices[i + 1]) {
-				maxProfit += prices[i + 1] - prices[i];
+				maxProfit += (prices[i + 1] - prices[i]);
 			}
 		}
 		return maxProfit;
