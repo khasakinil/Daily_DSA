@@ -23,7 +23,7 @@ import java.util.TreeSet;
 public class LongestConsecutiveSequence {
 
 	public static void main(String[] args) {
-		int[] nums = { 0,0 };
+		int[] nums = { 100, 4, 200, 1, 3, 2 };
 		System.out.println("LongestConsecutiveSequence Length : " + longestConsecutive(nums));
 	}
 
@@ -34,13 +34,11 @@ public class LongestConsecutiveSequence {
 
 		int longestConsecutiveSequence = 1, currentConsecutiveSequence = 1;
 
-		List<Integer> numsList = getSortedList(nums);
+		Set<Integer> numsSet = getSortedSet(nums);
 
-		for (int i = 0; i < numsList.size() - 1; i++) {
-			if (numsList.get(i) + 1 == numsList.get(i + 1)) {
+		for (Integer num : numsSet) {
+			if (numsSet.contains(num - 1)) {
 				currentConsecutiveSequence++;
-			} else if (numsList.get(i) == numsList.get(i + 1)) {
-				continue;
 			} else {
 				currentConsecutiveSequence = 1;
 			}
@@ -53,12 +51,11 @@ public class LongestConsecutiveSequence {
 		return longestConsecutiveSequence;
 	}
 
-	private static List<Integer> getSortedList(int[] nums) {
-		List<Integer> numsList = new ArrayList<>();
+	private static Set<Integer> getSortedSet(int[] nums) {
+		Set<Integer> numsSet = new TreeSet<>();
 		for (int num : nums) {
-			numsList.add(num);
+			numsSet.add(num);
 		}
-		Collections.sort(numsList);
-		return numsList;
+		return numsSet;
 	}
 }
