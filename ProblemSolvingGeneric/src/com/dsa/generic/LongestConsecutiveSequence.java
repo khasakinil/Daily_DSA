@@ -1,9 +1,5 @@
 package com.dsa.generic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -19,6 +15,12 @@ import java.util.TreeSet;
  * Example 2:
  * Input: nums = [0,3,7,2,5,8,4,6,0,1]
  * Output: 9
+ * 
+ * Problem Solving Approach : 
+ * 1. Sort the given array using TreeSet
+ * 2. Check everytime whether the start number seequence exists or not
+ * 	-> if exists increment counter else set counter to 1
+ * 3. Check current sequence counter with previous counter and update longestConsecutiveSequence
  */
 public class LongestConsecutiveSequence {
 
