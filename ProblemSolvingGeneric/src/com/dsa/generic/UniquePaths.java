@@ -17,6 +17,7 @@ package com.dsa.generic;
  * 1. Right -> Down -> Down
  * 2. Down -> Down -> Right
  * 3. Down -> Right -> Down
+ * 
  */
 public class UniquePaths {
 
