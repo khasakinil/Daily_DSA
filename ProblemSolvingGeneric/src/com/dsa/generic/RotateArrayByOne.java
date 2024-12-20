@@ -23,8 +23,8 @@ public class RotateArrayByOne {
 
     private static void printArrayValues(int[] arr) {
         System.out.println();
-        for (int j : arr) {
-            System.out.print(j + " ");
+        for (int currentVal : arr) {
+            System.out.print(currentVal + " ");
         }
     }
 
