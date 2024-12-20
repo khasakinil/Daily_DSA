@@ -9,7 +9,7 @@ Explanation: If we rotate arr by one position in clockwise 5 come to the front a
 Input: arr = [9, 8, 7, 6, 4, 2, 1, 3]
 Output: [3, 9, 8, 7, 6, 4, 2, 1]
 Explanation: After rotating clock-wise 3 comes in first position.
- */
+*/
 
 public class RotateArrayByOne {
     public static void main(String[] args) {
