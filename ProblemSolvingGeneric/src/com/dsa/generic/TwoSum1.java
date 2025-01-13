@@ -17,10 +17,11 @@ import java.util.Map;
  * Input: numbers = [2,3,4], target = 6
  * Output: [1,3]
  * Explanation: The sum of 2 and 4 is 6. Therefore index1 = 1, index2 = 3. We return [1, 3].
+ * 
  */
 //Note : Leetcode accepted solution.
 
-public class TwoSum {
+public class TwoSum1 {
 
 	public static void main(String[] args) {
 		int[] numbers = { 3, 3 };
@@ -34,32 +35,29 @@ public class TwoSum {
 
 	private static int[] getTwoSumIndex(int[] numbers, int target) {
 		Map<Integer, Integer> numMap = new HashMap<>();
+		Map<Integer, Integer> numDupMap = new HashMap<>();
+
 		for (int i = 0; i < numbers.length; i++) {
-			numMap.put(numbers[i], i + 1);
+			if(numMap.containsKey(numbers[i])){
+				numDupMap.put(numbers[i], i);
+			}else{
+				numMap.put(numbers[i], i);
+			}
 		}
 
 		for (Map.Entry<Integer, Integer> entry : numMap.entrySet()) {
-			if (numMap.containsKey(target - (int) entry.getKey())) {
-				int firstElement = (int) entry.getValue();
-				if ((int) entry.getValue() == numMap.get(target - (int) entry.getKey())) {
-					for (int i = 0; i < numbers.length; i++) {
-						if ((int) entry.getKey() == numbers[i]) {
-							firstElement = i + 1;
-							break;
-						}
-					}
-				}
+			if (numMap.containsKey(target - entry.getKey())) {
+				int firstIndex = entry.getValue();
+				int secondIndex;
 
-				int out[] = {
-						firstElement < numMap.get(target - (int) entry.getKey()) ? firstElement-1
-								: numMap.get(target - (int) entry.getKey())-1,
-						numMap.get(target - (int) entry.getKey()) > firstElement
-								? numMap.get(target - (int) entry.getKey())-1
-								: firstElement-1 };
-				return out;
+				if(numDupMap.containsKey(entry.getKey())){
+					secondIndex = numDupMap.get(entry.getKey());
+				}else{
+					secondIndex = numMap.get(target-entry.getKey());
+				}
+				return new int[]{firstIndex, secondIndex};
 			}
 		}
 		return null;
 	}
-
 }
