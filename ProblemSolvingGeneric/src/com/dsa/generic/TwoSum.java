@@ -51,11 +51,11 @@ public class TwoSum {
 				}
 
 				int out[] = {
-						firstElement < numMap.get(target - (int) entry.getKey()) ? firstElement
-								: numMap.get(target - (int) entry.getKey()),
+						firstElement < numMap.get(target - (int) entry.getKey()) ? firstElement-1
+								: numMap.get(target - (int) entry.getKey())-1,
 						numMap.get(target - (int) entry.getKey()) > firstElement
-								? numMap.get(target - (int) entry.getKey())
-								: firstElement };
+								? numMap.get(target - (int) entry.getKey())-1
+								: firstElement-1 };
 				return out;
 			}
 		}
