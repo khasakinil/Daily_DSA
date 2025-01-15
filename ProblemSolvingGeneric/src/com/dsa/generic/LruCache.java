@@ -32,7 +32,7 @@ import java.util.*;
  */
 public class LruCache {
 
-    HashMap<Integer, Integer> cache = new LinkedHashMap<Integer, Integer>();
+    HashMap<Integer, Integer> cache = new HashMap<Integer, Integer>();
     Deque<Integer> queue = new LinkedList<>();
     int capacity;
 
@@ -52,6 +52,7 @@ public class LruCache {
     }
 
     public int get(int key) {
+        //update the queue if key already exists else return -1
         if(queue.contains(key)){
             queue.remove(key);
             queue.addFirst(key);
@@ -60,11 +61,16 @@ public class LruCache {
     }
 
     public void put(int key, int value) {
+        //check whether queue dont have that key then remove element from the cache and last element from queue
         if (cache.size() == capacity && !queue.contains(key)) {
             cache.remove(queue.getLast());
             queue.removeLast();
         }
+
+        //adding element into cache
         cache.put(key, value);
+
+        //check if key is alredy into the queue, remove if exists and add it to the first place of the queue.
         if(queue.contains(key)){
             queue.remove(key);
         }
