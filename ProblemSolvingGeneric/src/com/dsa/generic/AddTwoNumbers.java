@@ -1,5 +1,6 @@
 package com.dsa.generic;
 
+import java.math.BigInteger;
 import java.util.Stack;
 
 /**
@@ -23,57 +24,43 @@ import java.util.Stack;
  */
 public class AddTwoNumbers {
     public static void main(String args[]) {
-        ListNode l1 = new ListNode(9);
+        ListNode l1 = new ListNode(0);
+        l1.next = new ListNode(8);
+        l1.next.next = new ListNode(6);
 
         ListNode l2 = new ListNode(1);
         l2.next = new ListNode(9);
-        l2.next.next = new ListNode(9);
-        l2.next.next.next = new ListNode(9);
-        l2.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next.next.next = new ListNode(9);
-        l2.next.next.next.next.next.next.next.next.next = new ListNode(9);
+//        l2.next.next = new ListNode(9);
+//        l2.next.next.next = new ListNode(9);
+//        l2.next.next.next.next = new ListNode(9);
+//        l2.next.next.next.next.next = new ListNode(9);
+//        l2.next.next.next.next.next.next = new ListNode(9);
+//        l2.next.next.next.next.next.next.next = new ListNode(9);
+//        l2.next.next.next.next.next.next.next.next = new ListNode(9);
+//        l2.next.next.next.next.next.next.next.next.next = new ListNode(9);
 
         addTwoNumbers(l1, l2);
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        long num1 = 0;
-        long num2 = 0;
-        long currentDecimal = 1;
+        String num1Str = "";
+        String num2Str = "";
         while (l1 != null) {
-            if (num1 == 0) {
-                num1 = l1.val;
-            } else {
-                currentDecimal = currentDecimal*10;
-                num1 = l1.val*currentDecimal + num1;
-            }
+            num1Str = l1.val + num1Str;
             l1 = l1.next;
         }
 
-        currentDecimal = 1;
-        System.out.println(num1);
-
         while (l2 != null) {
-            if (num2 == 0) {
-                num2 = l2.val;
-            } else {
-                currentDecimal = currentDecimal*10;
-                num2 = l2.val*currentDecimal + num2;
-            }
+            num2Str = l2.val + num2Str;
             l2 = l2.next;
         }
 
-        long addingTwoNum = num1 + num2;
+        long addingTwoNum = Long.parseLong(num1Str) + Long.parseLong(num2Str);
 
         ListNode result = new ListNode();
         ListNode temp = result;
-        long current = 0;
         while(addingTwoNum > 0){
-            current = addingTwoNum%10;
-            temp.val = (int)current;
+            temp.val = (int)(addingTwoNum%10);
             addingTwoNum = addingTwoNum/10;
             if(addingTwoNum>0){
                 temp.next = new ListNode();
