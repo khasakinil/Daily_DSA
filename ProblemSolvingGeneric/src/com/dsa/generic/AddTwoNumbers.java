@@ -30,14 +30,6 @@ public class AddTwoNumbers {
 
         ListNode l2 = new ListNode(1);
         l2.next = new ListNode(9);
-//        l2.next.next = new ListNode(9);
-//        l2.next.next.next = new ListNode(9);
-//        l2.next.next.next.next = new ListNode(9);
-//        l2.next.next.next.next.next = new ListNode(9);
-//        l2.next.next.next.next.next.next = new ListNode(9);
-//        l2.next.next.next.next.next.next.next = new ListNode(9);
-//        l2.next.next.next.next.next.next.next.next = new ListNode(9);
-//        l2.next.next.next.next.next.next.next.next.next = new ListNode(9);
 
         addTwoNumbers(l1, l2);
     }
