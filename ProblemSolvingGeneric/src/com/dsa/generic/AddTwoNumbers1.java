@@ -35,7 +35,7 @@ public class AddTwoNumbers1 {
 
     private static void printNodeValues(ListNode1 node) {
         System.out.println();
-        while(node != null) {
+        while (node != null) {
             System.out.print(node.val + " ");
             node = node.next;
         }
@@ -52,7 +52,7 @@ public class AddTwoNumbers1 {
             sum = (l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0) + carry;
 
             //set temp value to the sum
-            temp.val = sum >= 10 ? sum%10 : sum;
+            temp.val = sum >= 10 ? sum % 10 : sum;
 
             //take reminder to add it to the next sum
             carry = sum / 10;
@@ -71,7 +71,7 @@ public class AddTwoNumbers1 {
         }
 
         //if carry exists add it to the end of the list
-        if(carry !=0){
+        if (carry != 0) {
             temp.next = new ListNode1(carry);
         }
 
@@ -89,10 +89,5 @@ class ListNode1 {
 
     ListNode1(int val) {
         this.val = val;
-    }
-
-    ListNode1(int val, ListNode1 next) {
-        this.val = val;
-        this.next = next;
     }
 }
