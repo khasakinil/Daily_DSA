@@ -1,4 +1,4 @@
-package com.dsa.generic;
+package com.dsa.generic.apple;
 
 import java.util.*;
 
@@ -32,7 +32,7 @@ import java.util.*;
  */
 public class LruCache {
 
-    HashMap<Integer, Integer> cache = new HashMap<Integer, Integer>();
+    HashMap<Integer, Integer> cache = new HashMap<>();
     Deque<Integer> queue = new LinkedList<>();
     int capacity;
 

@@ -1,4 +1,4 @@
-package com.dsa.generic;
+package com.dsa.generic.apple;
 
 /**
  * You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
@@ -20,7 +20,7 @@ package com.dsa.generic;
  * Output: [8,9,9,9,0,0,0,1]
  */
 public class AddTwoNumbers1 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         ListNode1 l1 = new ListNode1(0);
         l1.next = new ListNode1(8);
         l1.next.next = new ListNode1(6);
@@ -44,7 +44,7 @@ public class AddTwoNumbers1 {
     private static ListNode1 addTwoNumbers(ListNode1 l1, ListNode1 l2) {
         ListNode1 result = new ListNode1();
         ListNode1 temp = result;
-        int sum = 0;
+        int sum;
         int carry = 0;
 
         //iterate while end of each node list

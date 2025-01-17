@@ -1,4 +1,4 @@
-package com.dsa.generic;
+package com.dsa.generic.apple;
 
 /**
  * Given an integer array nums, find the

@@ -1,4 +1,4 @@
-package com.dsa.generic;
+package com.dsa.generic.apple;
 
 import java.util.HashMap;
 import java.util.Map;
