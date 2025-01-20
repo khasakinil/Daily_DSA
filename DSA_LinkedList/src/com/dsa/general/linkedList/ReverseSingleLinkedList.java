@@ -1,4 +1,4 @@
-package com.dsa.ps.linkedList;
+package com.dsa.general.linkedList;
 
 public class ReverseSingleLinkedList {
 	static Node head;
