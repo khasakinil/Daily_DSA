@@ -28,6 +28,33 @@ public class CircularDoubleLinkedListMain {
         cdll.insertInCircularDoubleLinkedList(2, 22);
         cdll.traverseCircularDoubleLinkedList();
 
-        //check with insertInCircularDoubleLinkedList method implementation its return incorrect insertion.
+        cdll.reverseTraverseCircularDoubleLinkedList();
+
+        cdll.traverseCircularDoubleLinkedList();
+        cdll.deletionOfNodeInDoubleCircularLinkedList(0);
+        cdll.traverseCircularDoubleLinkedList();
+
+        cdll.deletionOfNodeInDoubleCircularLinkedList(0);
+        cdll.traverseCircularDoubleLinkedList();
+
+        cdll.deletionOfNodeInDoubleCircularLinkedList(30);
+        cdll.traverseCircularDoubleLinkedList();
+        cdll.deletionOfNodeInDoubleCircularLinkedList(30);
+        cdll.traverseCircularDoubleLinkedList();
+
+        cdll.deletionOfNodeInDoubleCircularLinkedList(3);
+        cdll.traverseCircularDoubleLinkedList();
+
+        cdll.deletionOfNodeInDoubleCircularLinkedList(4);
+        cdll.traverseCircularDoubleLinkedList();
+
+        cdll.deletionOfNodeInDoubleCircularLinkedList(0);
+        cdll.traverseCircularDoubleLinkedList();
+
+        cdll.deletionOfNodeInDoubleCircularLinkedList(10);
+        cdll.traverseCircularDoubleLinkedList();
+
+        cdll.deleteEntireCircularDoubleLinkedList();
+        cdll.deleteEntireCircularDoubleLinkedList();
     }
 }
