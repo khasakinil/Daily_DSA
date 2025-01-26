@@ -23,5 +23,15 @@ public class BinaryTreeByLinkedListMain {
         binaryTree.searchNodeInBinaryTree(44);
         binaryTree.searchNodeInBinaryTree(55);
         binaryTree.searchNodeInBinaryTree(80);
+
+        binaryTree.levelOrderTraversal();
+        binaryTree.deleteNodeFromBinaryTree(5);
+        binaryTree.levelOrderTraversal();
+        binaryTree.deleteNodeFromBinaryTree(50);
+        binaryTree.levelOrderTraversal();
+        binaryTree.deleteNodeFromBinaryTree(80);
+        binaryTree.levelOrderTraversal();
+        binaryTree.deleteTree();
+        binaryTree.deleteTree();
     }
 }
