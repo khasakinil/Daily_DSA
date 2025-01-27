@@ -10,5 +10,8 @@ public class BinarySearchTreeByLinkedListMain {
         bst.insert(50);
 
         bst.inOrderTraversal();
+        bst.preOrderTraversal();
+        bst.postOrderTraversal();
+        bst.levelOrderTraversal();
     }
 }
