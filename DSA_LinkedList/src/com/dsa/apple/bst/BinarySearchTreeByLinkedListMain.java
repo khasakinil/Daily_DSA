@@ -13,5 +13,11 @@ public class BinarySearchTreeByLinkedListMain {
         bst.preOrderTraversal();
         bst.postOrderTraversal();
         bst.levelOrderTraversal();
+        bst.searchNode(70);
+        bst.searchNode(80);
+        bst.searchNode(50);
+        bst.searchNode(10);
+        bst.deleteNodeFromBST(50);
+        bst.inOrderTraversal();
     }
 }

@@ -109,4 +109,67 @@ public class BinarySearchTreeByLinkedList {
             }
         }
     }
+
+    public void searchNode(int nodeValue) {
+        if (root != null) {
+            searchNode(root, nodeValue);
+        } else {
+            System.out.println("\nBinarySearchTree does not exists");
+        }
+    }
+
+    private void searchNode(BinaryNode root, int nodeValue) {
+        if (root == null) {
+            System.out.println("\nNode with value : " + nodeValue + " not found in the binary tree");
+            return;
+        } else if (root.value == nodeValue) {
+            System.out.println("\nNode with value : " + root.getValue() + " found in the binary tree");
+        } else if (root.getValue() > nodeValue) {
+            searchNode(root.getLeft(), nodeValue);
+        } else {
+            searchNode(root.getRight(), nodeValue);
+        }
+    }
+
+    public void deleteNodeFromBST(int nodeValue) {
+        if (root != null) {
+            deleteNodeFromBST(root, nodeValue);
+        } else {
+            System.out.println("\nBinarySearchTree does not exists");
+        }
+    }
+
+    private BinaryNode deleteNodeFromBST(BinaryNode root, int nodeValue) {
+        if (root == null) {
+            System.out.println("\nNode with value : " + nodeValue + " not found in the binary tree");
+            return null;
+        } else if (root.getValue() > nodeValue) {
+            root.setLeft(deleteNodeFromBST(root.getLeft(), nodeValue));
+        } else if (root.getValue() < nodeValue) {
+            root.setRight(deleteNodeFromBST(root.getRight(), nodeValue));
+        } else {
+            if (root.getLeft() != null && root.getRight() != null) {
+                BinaryNode tempNode = root;
+                BinaryNode minNodeFromRight = minimumElementFromRight(tempNode);
+                root.setValue(minNodeFromRight.getValue());
+                root.setRight(deleteNodeFromBST(root.getRight(), minNodeFromRight.getValue()));
+            } else if (root.getLeft() != null) {
+                root = root.getLeft();
+            } else if (root.getRight() != null) {
+                root = root.getRight();
+            } else {
+                root = null;
+            }
+        }
+
+        return root;
+    }
+
+    private BinaryNode minimumElementFromRight(BinaryNode currentNode) {
+        if (currentNode.getLeft() == null) {
+            return currentNode;
+        } else {
+            return minimumElementFromRight(currentNode.getLeft());
+        }
+    }
 }
