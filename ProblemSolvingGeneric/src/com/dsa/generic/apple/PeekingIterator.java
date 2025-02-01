@@ -27,25 +27,38 @@ import java.util.Iterator;
  */
 
 class PeekingIterator implements Iterator<Integer> {
+
+    private Iterator<Integer> itr = null;
+    private Integer nextValue = null;
+
     public PeekingIterator(Iterator<Integer> iterator) {
         // initialize any member here.
-
+        itr = iterator;
+        if (hasNext()) {
+            nextValue = iterator.next();
+        }
     }
 
     // Returns the next element in the iteration without advancing the iterator.
     public Integer peek() {
-        return 0;
+        return nextValue;
     }
 
     // hasNext() and next() should behave the same as in the Iterator interface.
     // Override them if needed.
     @Override
     public Integer next() {
-        return 0;
+        Integer val = nextValue;
+        if (itr.hasNext()) {
+            nextValue = itr.next();
+        }else{
+            nextValue = null;
+        }
+        return val;
     }
 
     @Override
     public boolean hasNext() {
-        return false;
+        return nextValue != null || itr.hasNext();
     }
 }
