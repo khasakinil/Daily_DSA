@@ -38,17 +38,23 @@ public class CountOfSmallerNumbersAfterSelf {
         int smallNumCount = 0;
         for (int i = nums.length - 1; i >= 0; i--) {
             int current = i;
-            int prev = current;
+//            int prev = current;
             for (int j = i; j < nums.length - 1; j++) {
-                prev = nums[j];
+//                prev = nums[j];
                 if (nums[current] > nums[j + 1]) {
                     smallNumCount = 1 + map.get(j + 1);
                     break;
-                } else if (prev == nums[j + 1]) {
-                    dupMap.put(prev, dupMap.getOrDefault(dupMap.get(prev), 0) + 1);
                 }
+//                else if (prev == nums[j + 1]) {
+//                    dupMap.put(prev, dupMap.getOrDefault(dupMap.get(prev), 0) + 1);
+//                }
             }
-            map.put(i, smallNumCount + dupMap.getOrDefault(prev, 0));
+//            if(nums[i]!=prev) {
+//                map.put(i, smallNumCount + dupMap.getOrDefault(prev, 0));
+//            }else{
+//                map.put(i, smallNumCount);
+//            }
+            map.put(i, smallNumCount);
             smallNumCount = 0;
         }
 
