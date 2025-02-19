@@ -19,7 +19,7 @@ public class CountPrimes {
 
     public static void main(String[] args) {
         int n = 10;
-        System.out.println("Total prime number till " + n + " : " + countPrimes(n));
+        System.out.println("Total prime number 0 to " + n + " : " + countPrimes(n));
     }
 
     public static int countPrimes(int n) {
