@@ -1,5 +1,7 @@
 package com.dsa.generic.apple;
 
+import java.util.Arrays;
+
 /**
  * 204. Count Primes
  * Given an integer n, return the number of prime numbers that are strictly less than n.
@@ -23,19 +25,25 @@ public class CountPrimes {
     }
 
     public static int countPrimes(int n) {
-
+        if (n <= 2) {
+            return 0;
+        }
+        boolean[] prime = new boolean[n];
+        Arrays.fill(prime, true);
+        prime[0] = false;
+        prime[1] = false;
         int countPrimes = 0;
-        for(int i=2; i<n; i++){
-            boolean status = true;
-            int j =i, start = 2;
-            while(start<j){
-                if(j%start==0){
-                    status = false;
-                    break;
+
+        for (int i = 2; i * i <= n; i++) {
+            if (prime[i]) {
+                for (int j = i * i; j < n; j += i) {
+                    prime[j] = false;
                 }
-                start++;
             }
-            if(status){
+        }
+
+        for (int i = 0; i < prime.length; i++) {
+            if (prime[i]) {
                 countPrimes++;
             }
         }
