@@ -19,7 +19,67 @@ public class TrappingRainWater2 {
 	}
 
 	public static int trapRainWater(int[][] heightMap) {
+		int[][] maxFromLeft = new int[heightMap.length][heightMap[0].length];
+		int[][] maxFromRight = new int[heightMap.length][heightMap[0].length];
+		int[][] maxFromTop = new int[heightMap.length][heightMap[0].length];
+		int[][] maxFromBottom = new int[heightMap.length][heightMap[0].length];
+		int waterTrapped = 0;
 
-		return 0;
+		// update max from left to right
+		int maxNum = Integer.MIN_VALUE;
+		for (int i = 0; i < heightMap.length; i++) {
+			for (int j = 0; j < heightMap[0].length; j++) {
+				if (heightMap[i][j] > maxNum) {
+					maxNum = heightMap[i][j];
+				}
+				maxFromLeft[i][j] = maxNum;
+			}
+			maxNum = Integer.MIN_VALUE;
+		}
+
+		// update max from right to left
+		for (int i = heightMap.length - 1; i >= 0; i--) {
+			for (int j = heightMap[0].length - 1; j >= 0; j--) {
+				if (heightMap[i][j] > maxNum) {
+					maxNum = heightMap[i][j];
+				}
+				maxFromRight[i][j] = maxNum;
+			}
+			maxNum = Integer.MIN_VALUE;
+		}
+
+		// update max from top to bottom
+		for (int i = 0; i < heightMap[0].length; i++) {
+			for (int j = 0; j < heightMap.length; j++) {
+				if (heightMap[j][i] > maxNum) {
+					maxNum = heightMap[j][i];
+				}
+				maxFromTop[j][i] = maxNum;
+			}
+			maxNum = Integer.MIN_VALUE;
+		}
+
+		// update max from bottom top
+		for (int i = heightMap[0].length - 1; i >= 0; i--) {
+			for (int j = heightMap.length - 1; j >= 0; j--) {
+				if (heightMap[j][i] > maxNum) {
+					maxNum = heightMap[j][i];
+				}
+				maxFromBottom[j][i] = maxNum;
+			}
+			maxNum = Integer.MIN_VALUE;
+		}
+
+		int min;
+		for (int i = 1; i < heightMap.length-1; i++) {
+			for (int j = 1; j < heightMap[0].length-1; j++) {
+				min = Math.min(Math.min(maxFromLeft[i][j], maxFromRight[i][j]),
+						Math.min(maxFromTop[i][j], maxFromBottom[i][j]));
+				if (min > heightMap[i][j]) {
+					waterTrapped += (min - heightMap[i][j]);
+				}
+			}
+		}
+		return waterTrapped;
 	}
 }
