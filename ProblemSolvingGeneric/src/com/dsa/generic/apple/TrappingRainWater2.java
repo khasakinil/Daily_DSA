@@ -13,8 +13,8 @@ package com.dsa.generic.apple;
 
 public class TrappingRainWater2 {
 	public static void main(String[] ags) {
-		int[][] heightMap = { { 3, 3, 3, 3, 3 }, { 3, 2, 2, 2, 3 }, { 3, 2, 1, 2, 3 }, { 3, 2, 2, 2, 3 },
-				{ 3, 3, 3, 3, 3 } };
+		int[][] heightMap = { { 12, 13, 1, 12 }, { 13, 4, 13, 12 }, { 13, 8, 10, 12 }, { 12, 13, 12, 12 },
+				{ 13, 13, 13, 13 } };
 		System.out.println("Max water trapped : " + trapRainWater(heightMap));
 	}
 
@@ -70,15 +70,22 @@ public class TrappingRainWater2 {
 			maxNum = Integer.MIN_VALUE;
 		}
 
-		int min;
-		for (int i = 1; i < heightMap.length-1; i++) {
-			for (int j = 1; j < heightMap[0].length-1; j++) {
-				min = Math.min(Math.min(maxFromLeft[i][j], maxFromRight[i][j]),
-						Math.min(maxFromTop[i][j], maxFromBottom[i][j]));
+		// find the minimum in each index from each side and get the max water filled.
+		int min = Integer.MAX_VALUE;
+		for (int i = 0; i < heightMap.length; i++) {
+			for (int j = 0; j < heightMap[0].length; j++) {
+				int[] minArr = { maxFromLeft[i][j], maxFromRight[i][j], maxFromTop[i][j], maxFromBottom[i][j] };
+
+				for (int k = 0; k < minArr.length; k++) {
+					min = Math.min(min, minArr[k]);
+				}
+
 				if (min > heightMap[i][j]) {
 					waterTrapped += (min - heightMap[i][j]);
 				}
+				min = Integer.MAX_VALUE;
 			}
+			min = Integer.MAX_VALUE;
 		}
 		return waterTrapped;
 	}
