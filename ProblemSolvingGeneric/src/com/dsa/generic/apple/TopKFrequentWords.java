@@ -1,6 +1,11 @@
 package com.dsa.generic.apple;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Given an array of strings words and an integer k, return the k most frequent
@@ -22,7 +27,25 @@ public class TopKFrequentWords {
 	}
 
 	public static List<String> topKFrequent(String[] words, int k) {
+		List<String> frequentWords = new ArrayList<>();
+		Map<String, Integer> wordCountMap = new TreeMap();
+		int count = 0;
 
-		return null;
+		for (int i = 0; i < words.length; i++) {
+			wordCountMap.put(words[i], wordCountMap.getOrDefault(words[i], 0) + 1);
+		}
+
+		List<Map.Entry<String, Integer>> mapList = new LinkedList<Map.Entry<String, Integer>>(wordCountMap.entrySet());
+		Collections.sort(mapList, (i1, i2) -> i1.getValue() > i2.getValue() ? -1 : 1);
+
+		for (Map.Entry<String, Integer> map : mapList) {
+			frequentWords.add(map.getKey());
+			count++;
+			if (count >= k) {
+				break;
+			}
+		}
+
+		return frequentWords;
 	}
 }
