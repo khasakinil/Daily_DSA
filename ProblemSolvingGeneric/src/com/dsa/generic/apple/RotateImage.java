@@ -1,8 +1,7 @@
 package com.dsa.generic.apple;
 
 /**
- * 48. Rotate Image 
- * You are given an n x n 2D matrix representing an image,
+ * 48. Rotate Image You are given an n x n 2D matrix representing an image,
  * rotate the image by 90 degrees (clockwise). You have to rotate the image
  * in-place, which means you have to modify the input 2D matrix directly. DO NOT
  * allocate another 2D matrix and do the rotation. Example 1:\ Input: matrix =
@@ -15,12 +14,22 @@ public class RotateImage {
 	public static void main(String[] args) {
 		int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
 		printArray(matrix);
-		rotateImage(matrix);
-		printArray(matrix);
+		int[][] rotateImage = rotateImageWithBruitForce(matrix);
+		printArray(rotateImage);
 	}
 
-	private static void rotateImage(int[][] matrix) {
-		
+	private static int[][] rotateImageWithBruitForce(int[][] matrix) {
+		int newMatrix[][] = new int[matrix.length][matrix.length];
+		int newMatrxRow = matrix.length - 1;
+		int newMatrxCol = 0;
+		for (int i = 0; i < matrix.length; i++) {
+			newMatrxCol = 0;
+			for (int j = 0; j < matrix.length; j++) {
+				newMatrix[newMatrxCol++][newMatrxRow] = matrix[i][j];
+			}
+			newMatrxRow--;
+		}
+		return newMatrix;
 	}
 
 	private static void printArray(int[][] matrix) {
