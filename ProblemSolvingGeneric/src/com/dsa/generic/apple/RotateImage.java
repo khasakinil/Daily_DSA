@@ -15,7 +15,31 @@ public class RotateImage {
 		int[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
 		printArray(matrix);
 		int[][] rotateImage = rotateImageWithBruitForce(matrix);
-		printArray(rotateImage);
+//		printArray(rotateImage);
+		rotateImageWithOptimal(matrix);
+		printArray(matrix);
+	}
+
+	private static void rotateImageWithOptimal(int[][] matrix) {
+		int n = matrix.length;
+		for (int i = 0; i < (n + 1) / 2; i++) {
+			for (int j = 0; j < n / 2; j++) {
+				// temp = top left
+				int temp = matrix[i][j];
+
+				// top left = bottom left
+				matrix[i][j] = matrix[n - j - 1][i];
+
+				// bottom left = bottom right
+				matrix[n - j - 1][i] = matrix[n - i - 1][n - j - 1];
+
+				// bottom right = top right
+				matrix[n - i - 1][n - j - 1] = matrix[j][n - 1 - i];
+
+				// top right = temp
+				matrix[j][n - 1 - i] = temp;
+			}
+		}
 	}
 
 	private static int[][] rotateImageWithBruitForce(int[][] matrix) {
