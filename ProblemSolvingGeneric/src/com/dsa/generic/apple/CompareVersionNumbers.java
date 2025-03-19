@@ -1,8 +1,9 @@
 package com.dsa.generic.apple;
 
+import java.util.ArrayList;
+
 /**
- * 165. Compare Version Numbers 
- * Given two version strings, version1 and
+ * 165. Compare Version Numbers Given two version strings, version1 and
  * version2, compare them. A version string consists of revisions separated by
  * dots '.'. The value of the revision is its integer conversion ignoring
  * leading zeros. To compare version strings, compare their revision values in
@@ -26,6 +27,23 @@ public class CompareVersionNumbers {
 	}
 
 	public static int compareVersion(String version1, String version2) {
-		return 0;
+		String[] version1List = version1.split("\\.");
+		String[] version2List = version2.split("\\.");
+		int returnVal = 0;
+
+		if (version1List.length != version2List.length) {
+			return 0;
+		}
+
+		for (int i = 0; i < version1List.length; i++) {
+			if (Integer.parseInt(version1List[i]) < Integer.parseInt(version2List[i])) {
+				returnVal = -1;
+				break;
+			} else if (Integer.parseInt(version1List[i]) > Integer.parseInt(version2List[i])) {
+				returnVal = 1;
+				break;
+			}
+		}
+		return returnVal;
 	}
 }
