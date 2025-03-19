@@ -22,7 +22,7 @@ package com.dsa.generic.apple;
 public class CompareVersionNumbers {
 
 	public static void main(String args[]) {
-		System.out.println(compareVersion("1.2", "1.10"));
+		System.out.println(compareVersion("1.0.1", "1"));
 	}
 
 	public static int compareVersion(String version1, String version2) {
@@ -30,15 +30,28 @@ public class CompareVersionNumbers {
 		String[] version2List = version2.split("\\.");
 		int returnVal = 0;
 
-		if (version1List.length != version2List.length) {
-			return 0;
-		}
-
-		for (int i = 0; i < version1List.length; i++) {
-			if (Integer.parseInt(version1List[i]) < Integer.parseInt(version2List[i])) {
+		int version1Val = 0;
+		int version2Val = 0;
+		
+		int maxLen = version1List.length>version2List.length?version1List.length : version2List.length;
+		for (int i = 0; i < maxLen; i++) {
+			if(i<version1List.length) {
+				version1Val = Integer.parseInt(version1List[i]);
+			}else {
+				version1Val = 0;
+			}
+			
+			if(i<version2List.length) {
+				version2Val = Integer.parseInt(version2List[i]);
+			}else {
+				version2Val = 0;
+			}
+			
+			
+			if (version1Val < version2Val) {
 				returnVal = -1;
 				break;
-			} else if (Integer.parseInt(version1List[i]) > Integer.parseInt(version2List[i])) {
+			} else if (version1Val > version2Val) {
 				returnVal = 1;
 				break;
 			}
