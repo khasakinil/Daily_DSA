@@ -10,6 +10,7 @@ import java.util.PriorityQueue;
 import java.util.TreeMap;
 
 /**
+ * 692. Top K Frequent Words
  * Given an array of strings words and an integer k, return the k most frequent
  * strings. Return the answer sorted by the frequency from highest to lowest.
  * Sort the words with the same frequency by their lexicographical order.
@@ -71,32 +72,32 @@ public class TopKFrequentWords {
 //		}
 //
 //		return frequentWords;
-		
+
 		Map<String, Integer> wordCount = new HashMap<>();
-        for (String word : words) {
-            wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
-        }
+		for (String word : words) {
+			wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+		}
 
-        PriorityQueue<String> heap = new PriorityQueue<>((word1, word2) -> {
-            int frequencyDifference = wordCount.get(word1) - wordCount.get(word2);
-            if (frequencyDifference == 0) {
-                return word2.compareTo(word1);
-            }
-            return frequencyDifference;
-        });
+		PriorityQueue<String> heap = new PriorityQueue<>((word1, word2) -> {
+			int frequencyDifference = wordCount.get(word1) - wordCount.get(word2);
+			if (frequencyDifference == 0) {
+				return word2.compareTo(word1);
+			}
+			return frequencyDifference;
+		});
 
-        for (String word : wordCount.keySet()) {
-            heap.offer(word);
-            if (heap.size() > k) {
-                heap.poll();
-            }
-        }
+		for (String word : wordCount.keySet()) {
+			heap.offer(word);
+			if (heap.size() > k) {
+				heap.poll();
+			}
+		}
 
-        LinkedList<String> topKWords = new LinkedList<>();
-        while (!heap.isEmpty()) {
-            topKWords.addFirst(heap.poll());
-        }
+		LinkedList<String> topKWords = new LinkedList<>();
+		while (!heap.isEmpty()) {
+			topKWords.addFirst(heap.poll());
+		}
 
-        return topKWords;
+		return topKWords;
 	}
 }
